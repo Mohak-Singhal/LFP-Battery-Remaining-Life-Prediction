@@ -80,7 +80,7 @@ def main():
             st.error(f"Could not score uploaded dataset: {exc}")
             predictions = pd.DataFrame()
     else:
-        predictions = saved_predictions.copy()
+        predictions = saved_predictions
 
     if predictions.empty:
         st.warning("No predictions available yet. Run training and prediction first, or upload a valid dataset.")
