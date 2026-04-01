@@ -61,6 +61,9 @@ def main():
     )
 
     with st.sidebar:
+        st.header("Navigation")
+        app_page = st.radio("Select View:", ["Command Center", "Endur-Cert: 2nd Life"], index=0)
+        st.divider()
         st.header("Battery Rul Predictor")
         mode = st.radio("Dataset mode", ["Saved demo outputs", "Upload custom CSV"], index=0)
         uploaded_file = st.file_uploader("Upload battery CSV", type=["csv"])
@@ -87,6 +90,11 @@ def main():
         predictions["battery_id"] = "Demo"
     if "battery_health_class" not in predictions.columns and "capacity_remaining" in predictions.columns:
         predictions = enrich_business_columns(predictions)
+
+    if app_page == "Endur-Cert: 2nd Life":
+        from src.ui.endur_cert_ui import render_endur_cert_tab
+        render_endur_cert_tab(predictions)
+        return
 
     snapshot = latest_snapshot(predictions)
     selected_battery = st.sidebar.selectbox(

@@ -5,8 +5,8 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 # Data Paths
 DATA_DIR = PROJECT_ROOT / "data"
-DEFAULT_TRAIN_DATA = DATA_DIR / "battery_set_clean_train_80.csv"
-DEFAULT_TEST_DATA = DATA_DIR / "battery_set_clean_test_20.csv"
+DEFAULT_TRAIN_DATA = DATA_DIR / "processed" / "synthetic_battery_rul.csv"
+DEFAULT_TEST_DATA = DATA_DIR / "processed" / "synthetic_battery_rul.csv"
 DEFAULT_DATA_PATH = DEFAULT_TEST_DATA
 
 # Model Paths

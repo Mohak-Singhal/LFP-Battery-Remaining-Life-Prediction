@@ -6,3 +6,4 @@ streamlit
 plotly
 matplotlib
 joblib
+reportlab
