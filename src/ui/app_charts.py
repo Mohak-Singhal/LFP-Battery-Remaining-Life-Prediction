@@ -122,8 +122,9 @@ def chart_rul_band(battery_df: pd.DataFrame, selected_row: pd.Series | None = No
     return make_line_theme(fig)
 
 def chart_actual_vs_predicted(predictions: pd.DataFrame):
+    # Downsampled from 7000 to 2500 to aggressively prevent Render 512MB RAM exhaustion
     scatter = px.scatter(
-        predictions.sample(min(len(predictions), 7000), random_state=42),
+        predictions.sample(min(len(predictions), 2500), random_state=42),
         x="rul",
         y="predicted_rul",
         color="prediction_interval_width",
@@ -191,8 +192,13 @@ def chart_fleet_degradation_trajectories(predictions: pd.DataFrame):
 
     fig = go.Figure()
     for battery_id, battery_trace in plot_df.groupby("battery_id", sort=False):
-        ordered = battery_trace.sort_values("cycle_number")
-        lifetime = float(ordered["lifetime_cycles"].iloc[0])
+        # Prevent 512MB Render RAM crashes by subsampling 1/20th of the points
+        # to dramatically lower JSON Plotly serialization size (from 100MB to 5MB)
+        ordered = battery_trace.sort_values("cycle_number").iloc[::20]
+        if ordered.empty:
+            continue
+            
+        lifetime = float(battery_trace["lifetime_cycles"].iloc[0])
         norm = (lifetime - lifetime_min) / lifetime_span
         color = sample_colorscale("Turbo", [norm])[0]
         fig.add_trace(
@@ -242,7 +248,8 @@ def chart_fleet_degradation_trajectories(predictions: pd.DataFrame):
     return make_line_theme(fig)
 
 def chart_capacity_vs_rul(predictions: pd.DataFrame):
-    sample = predictions.sample(min(len(predictions), 6000), random_state=42)
+    # Downsampled to 2500 to aggressively prevent plotting JSON serialization RAM spikes
+    sample = predictions.sample(min(len(predictions), 2500), random_state=42)
     fig = px.scatter(
         sample,
         x="capacity_remaining",

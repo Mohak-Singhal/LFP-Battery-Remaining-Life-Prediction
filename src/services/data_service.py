@@ -48,14 +48,13 @@ def load_predictions_frame():
 def latest_snapshot(predictions: pd.DataFrame):
     if predictions.empty:
         return pd.DataFrame()
-    snapshot = predictions.sort_values("cycle_number").groupby("battery_id", as_index=False).tail(1)
-    return snapshot.sort_values("predicted_rul")
+    # Much more memory-efficient than groupby().tail()
+    return predictions.drop_duplicates("battery_id", keep="last").sort_values("predicted_rul")
 
 def fleet_snapshot_at_cycle(predictions: pd.DataFrame, selected_cycle: int):
     if predictions.empty:
         return pd.DataFrame()
-    eligible = predictions[predictions["cycle_number"] <= selected_cycle].copy()
+    eligible = predictions[predictions["cycle_number"] <= selected_cycle]
     if eligible.empty:
         return latest_snapshot(predictions)
-    snapshot = eligible.sort_values("cycle_number").groupby("battery_id", as_index=False).tail(1)
-    return snapshot.sort_values("predicted_rul")
+    return eligible.drop_duplicates("battery_id", keep="last").sort_values("predicted_rul")
