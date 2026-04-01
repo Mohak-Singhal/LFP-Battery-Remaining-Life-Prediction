@@ -15,50 +15,18 @@ from src.data.data_loader import load_and_map
 from src.models.evaluation import error_distribution, evaluate_model
 from src.data.preprocessing import clean_data, create_features, estimate_rul, handle_missing_values
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-DEFAULT_TRAIN_DATA = PROJECT_ROOT / 'data' / 'battery_set_clean_train_80.csv'
-DEFAULT_TEST_DATA = PROJECT_ROOT / 'data' / 'battery_set_clean_test_20.csv'
-DEFAULT_MODEL_PATH = PROJECT_ROOT / 'models' / 'rul_model.pkl'
-DEFAULT_METRICS_PATH = PROJECT_ROOT / 'models' / 'training_metrics.json'
-DEFAULT_DEPLOYABILITY_PATH = PROJECT_ROOT / 'models' / 'deployability_report.json'
-VALIDATION_SPLITS = 3
-VALIDATION_TEST_SIZE = 0.2
-FINAL_TRAIN_SAMPLE_SIZE = 250000
-
-MODEL_FEATURES = [
-    'cycle_number',
-    'voltage',
-    'current',
-    'current_abs',
-    'temperature',
-    'soc',
-    'dod',
-    'c_rate',
-    'capacity_remaining',
-    'internal_resistance',
-    'energy_throughput',
-    'cycle_age',
-    'rolling_temperature',
-    'avg_dod',
-    'charge_rate_mean',
-    'rolling_voltage_avg',
-    'capacity_fade',
-    'capacity_fade_rate',
-    'thermal_stress_index',
-    'health_score',
-    'power_draw',
-    'temperature_soc_interaction',
-    'voltage_drop_from_avg',
-    'temperature_stress_factor',
-    'dod_stress_factor',
-    'c_rate_stress_factor',
-    'equivalent_full_cycles',
-    'combined_stress_index',
-    'capacity_margin_to_eol',
-    'degradation_rate_est',
-    'physics_rul_proxy',
-    'remaining_calendar_months_proxy',
-]
+from src.config import (
+    PROJECT_ROOT,
+    DEFAULT_TRAIN_DATA,
+    DEFAULT_TEST_DATA,
+    DEFAULT_MODEL_PATH,
+    DEFAULT_METRICS_PATH,
+    DEFAULT_DEPLOYABILITY_PATH,
+    VALIDATION_SPLITS,
+    VALIDATION_TEST_SIZE,
+    FINAL_TRAIN_SAMPLE_SIZE,
+    MODEL_FEATURES
+)
 
 
 def resolve_project_path(path: str | os.PathLike) -> str:

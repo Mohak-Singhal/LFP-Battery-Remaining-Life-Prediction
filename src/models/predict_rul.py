@@ -13,11 +13,14 @@ from src.models.evaluation import error_distribution, evaluate_model
 from src.ui.model_visualization import plot_error_distribution, plot_failure_curve, plot_predictions_vs_actual
 from src.data.preprocessing import clean_data, create_features, estimate_rul, handle_missing_values
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-DEFAULT_MODEL_PATH = PROJECT_ROOT / 'models' / 'rul_model.pkl'
-DEFAULT_OUT_PATH = PROJECT_ROOT / 'results' / 'predictions.parquet'
-DEFAULT_METRICS_PATH = PROJECT_ROOT / 'results' / 'test_metrics.json'
-DEFAULT_PLOT_DIR = PROJECT_ROOT / 'results' / 'plots'
+from src.config import (
+    PROJECT_ROOT,
+    DEFAULT_MODEL_PATH,
+    DEFAULT_PREDICTIONS_PATH as DEFAULT_OUT_PATH,
+    DEFAULT_TEST_METRICS_PATH as DEFAULT_METRICS_PATH,
+    DEFAULT_PLOT_DIR,
+    DEFAULT_TEST_DATA
+)
 
 
 def resolve_project_path(path: str | os.PathLike) -> str:
