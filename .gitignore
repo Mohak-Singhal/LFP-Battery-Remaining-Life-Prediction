@@ -3,9 +3,15 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Models and results
-/models/
-/results/
+# Ignore directories by default
+/models/*
+/results/*
+
+# But explicitly track completed artifact pipelines so Render doesn't re-train (OOM crash)
+!/models/*.pkl
+!/models/*.json
+!/results/*.parquet
+!/results/*.json
 streamlit.log
 
 # OS generated files

@@ -1,0 +1,262 @@
+{
+  "best_model": "xgb",
+  "best_rmse": 196.23149735536015,
+  "grouped_validation": {
+    "rf": {
+      "mean_RMSE": 203.14412699976174,
+      "mean_MAE": 140.00203512072758,
+      "mean_R2": 0.977283491740852,
+      "splits": [
+        {
+          "RMSE": 202.44737038514802,
+          "MAE": 138.9762824763369,
+          "R2": 0.9775060217809246,
+          "split": 1
+        },
+        {
+          "RMSE": 203.53653807421654,
+          "MAE": 140.05043369095026,
+          "R2": 0.9771509994558133,
+          "split": 2
+        },
+        {
+          "RMSE": 203.4484725399207,
+          "MAE": 140.97938919489562,
+          "R2": 0.9771934539858186,
+          "split": 3
+        }
+      ],
+      "uncertainty_profile": {
+        "interval_alpha": 0.1,
+        "overall": {
+          "lower_residual_q": -249.70716548900054,
+          "upper_residual_q": 215.2393440215792
+        },
+        "by_prediction_band": {
+          "near_eol": {
+            "lower_residual_q": -39.22187753139174,
+            "upper_residual_q": 36.964359017352685,
+            "count": 19615
+          },
+          "mid_life": {
+            "lower_residual_q": -187.28808718837809,
+            "upper_residual_q": 174.38868305929972,
+            "count": 49797
+          },
+          "early_life": {
+            "lower_residual_q": -357.421744809773,
+            "upper_residual_q": 261.50351534998185,
+            "count": 80664
+          }
+        }
+      }
+    },
+    "xgb": {
+      "mean_RMSE": 196.23149735536015,
+      "mean_MAE": 131.3308952286417,
+      "mean_R2": 0.9788027226111929,
+      "splits": [
+        {
+          "RMSE": 195.0270676304338,
+          "MAE": 129.84118233941703,
+          "R2": 0.9791247458315411,
+          "split": 1
+        },
+        {
+          "RMSE": 197.03455485640546,
+          "MAE": 131.63314929868568,
+          "R2": 0.9785875069328052,
+          "split": 2
+        },
+        {
+          "RMSE": 196.63286957924117,
+          "MAE": 132.51835404782238,
+          "R2": 0.9786959150692326,
+          "split": 3
+        }
+      ],
+      "uncertainty_profile": {
+        "interval_alpha": 0.1,
+        "overall": {
+          "lower_residual_q": -234.25917480468752,
+          "upper_residual_q": 206.48425781249995
+        },
+        "by_prediction_band": {
+          "near_eol": {
+            "lower_residual_q": -37.78092895507814,
+            "upper_residual_q": 34.92348754882812,
+            "count": 19661
+          },
+          "mid_life": {
+            "lower_residual_q": -176.2112915039062,
+            "upper_residual_q": 167.20711816406256,
+            "count": 49868
+          },
+          "early_life": {
+            "lower_residual_q": -339.78569335937505,
+            "upper_residual_q": 257.83093945312515,
+            "count": 80547
+          }
+        }
+      }
+    }
+  },
+  "features_used": [
+    "cycle_number",
+    "voltage",
+    "current",
+    "current_abs",
+    "temperature",
+    "soc",
+    "dod",
+    "c_rate",
+    "capacity_remaining",
+    "internal_resistance",
+    "energy_throughput",
+    "cycle_age",
+    "rolling_temperature",
+    "avg_dod",
+    "charge_rate_mean",
+    "rolling_voltage_avg",
+    "capacity_fade",
+    "capacity_fade_rate",
+    "thermal_stress_index",
+    "health_score",
+    "power_draw",
+    "temperature_soc_interaction",
+    "voltage_drop_from_avg",
+    "temperature_stress_factor",
+    "dod_stress_factor",
+    "c_rate_stress_factor",
+    "equivalent_full_cycles",
+    "combined_stress_index",
+    "capacity_margin_to_eol",
+    "degradation_rate_est",
+    "physics_rul_proxy",
+    "remaining_calendar_months_proxy"
+  ],
+  "feature_importance": [
+    {
+      "feature": "remaining_calendar_months_proxy",
+      "importance": 0.4915112853050232
+    },
+    {
+      "feature": "physics_rul_proxy",
+      "importance": 0.2455693483352661
+    },
+    {
+      "feature": "health_score",
+      "importance": 0.1332750916481018
+    },
+    {
+      "feature": "capacity_fade",
+      "importance": 0.05276596173644066
+    },
+    {
+      "feature": "capacity_remaining",
+      "importance": 0.04965689033269882
+    },
+    {
+      "feature": "capacity_margin_to_eol",
+      "importance": 0.007875450886785984
+    },
+    {
+      "feature": "equivalent_full_cycles",
+      "importance": 0.003491910407319665
+    },
+    {
+      "feature": "capacity_fade_rate",
+      "importance": 0.0027010689955204725
+    },
+    {
+      "feature": "rolling_voltage_avg",
+      "importance": 0.002168200444430113
+    },
+    {
+      "feature": "charge_rate_mean",
+      "importance": 0.0018988503143191338
+    },
+    {
+      "feature": "combined_stress_index",
+      "importance": 0.0014014033367857337
+    },
+    {
+      "feature": "c_rate_stress_factor",
+      "importance": 0.000951907888520509
+    }
+  ],
+  "driver_importance_groups": {
+    "temperature_related": 0.0016359283908968791,
+    "dod_related": 0.06486570641573053,
+    "c_rate_related": 0.00434422810212709,
+    "voltage_current_state": 0.003788706279010512,
+    "health_and_rul_proxy": 0.9202368706173729
+  },
+  "training_rows": 736453,
+  "final_fit_rows": 249905,
+  "uncertainty_profile": {
+    "interval_alpha": 0.1,
+    "overall": {
+      "lower_residual_q": -234.25917480468752,
+      "upper_residual_q": 206.48425781249995
+    },
+    "by_prediction_band": {
+      "near_eol": {
+        "lower_residual_q": -37.78092895507814,
+        "upper_residual_q": 34.92348754882812,
+        "count": 19661
+      },
+      "mid_life": {
+        "lower_residual_q": -176.2112915039062,
+        "upper_residual_q": 167.20711816406256,
+        "count": 49868
+      },
+      "early_life": {
+        "lower_residual_q": -339.78569335937505,
+        "upper_residual_q": 257.83093945312515,
+        "count": 80547
+      }
+    }
+  },
+  "test_metrics": {
+    "RMSE": 187.59931101673726,
+    "MAE": 125.990432711314,
+    "R2": 0.9800497673608489
+  },
+  "test_error_distribution": {
+    "mean_error": -0.11497617728632269,
+    "median_error": -8.616310119628906,
+    "p05_error": -278.9656660156247,
+    "p95_error": 340.736837890625
+  },
+  "test_lifecycle_metrics": {
+    "near_eol": {
+      "RMSE": 31.821093774704018,
+      "MAE": 22.1077954381648,
+      "R2": 0.9514683182672995,
+      "count": 97581
+    },
+    "mid_life": {
+      "RMSE": 148.52160720593062,
+      "MAE": 108.41299238086812,
+      "R2": 0.8823184377930615,
+      "count": 259434
+    },
+    "early_life": {
+      "RMSE": 230.14039578306682,
+      "MAE": 164.72444797188385,
+      "R2": 0.9006088632485982,
+      "count": 379438
+    }
+  },
+  "baseline_test_metrics": {
+    "RMSE": 514.1841690127134,
+    "MAE": 410.0594647044686,
+    "R2": 0.8501271766728182,
+    "assumed_eol_cycle": 3676.0
+  },
+  "test_interval_metrics": {
+    "coverage": 0.8140573804438301,
+    "mean_interval_width": 439.71807601863054
+  }
+}
